@@ -1,6 +1,19 @@
 ﻿var correct = 0;
 var wrong = 0;
 
+$(window).keypress(function(e){
+  var code = e.which || e.keyCode;
+  switch ( code )
+  {
+    case 97:
+      guess('familjeliv');
+      break;
+    case 98:
+      guess('flashback');
+      break;
+  }
+});
+
 function setState(state){
 	$('.game-state').hide();
 	$('.game-state-'+state).show();
