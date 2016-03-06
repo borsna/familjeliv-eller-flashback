@@ -40,7 +40,7 @@ function guess(answer){
 	updateProgess();
 	
 	quiz.getNewSentence();
-	$('#sentence').html(quiz.current.s);	
+	$('#sentence').text(quiz.current.s);	
 }
 
 function startGame(){
@@ -48,7 +48,7 @@ function startGame(){
 	correct = 0;
 	updateProgess();
 	quiz.getNewSentence();
-	$('#sentence').html(quiz.current.s);
+	$('#sentence').text(quiz.current.s);
 }
 
 function updateProgess(){
