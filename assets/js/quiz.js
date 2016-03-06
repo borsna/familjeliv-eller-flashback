@@ -44,15 +44,6 @@ var quiz = {
 		"FLASHBACK-OVRIGT",
 		"FLASHBACK-FLASHBACK"	
 	],
-    params : {
-        command: 'query_sample',
-        corpus: 'FLASHBACK-POLITIK',
-        cqp: '[]',
-        start:0,
-        end:10,
-        defaultcontext:'1 sentence',
-        show_struct:['text_username', 'text_date', 'thread_title']
-    },
     punct : ['.', ',', '!', '?', ';', '-', '"', '\'', '(', ')'],
     current : {},
     getNewSentence : function(){
@@ -64,7 +55,7 @@ var quiz = {
          
          var random = Math.floor(Math.random()*sentences.length);
 
-         quiz.current = sentences[random]
+         quiz.current = sentences[random];
          sentences.splice(random,1);
          window.localStorage['quiz-sentences'] = JSON.stringify(sentences);
 
@@ -91,35 +82,34 @@ var quiz = {
 					jQuery.ajax({
 						url:quiz.backend, 
 						dataType:'jsonp', data: {
-							'command':'query',
+							'command':'query_sample',
 							'corpus': index,
 							'start': start,
-							'end': start,
+							'end': (start+3),
 							'cqp': '[]',
 							'defaultcontext':'1 sentence',
 							'show_struct':['text_username', 'text_date', 'thread_title']							
 						}
 					}).done(function(data){
 						console.log(data);
-						
-						var sentence = "";
-						jQuery.each(data.kwic[0].tokens, function(key, val) {
-							if (jQuery.inArray(val.word, quiz.punct) > -1){ 
-								sentence = sentence.trim() + val.word;
-							}
-							else{
-								sentence += ' ' + val.word;
-							}
-						});
-						var sentences = JSON.parse(window.localStorage['quiz-sentences']);
-						sentences.push({s:sentence.trim(),f:data.kwic[0].corpus});						
-						
-						window.localStorage['quiz-sentences'] = JSON.stringify(sentences);
+						if(data.hasOwnProperty('ERROR') == false){
+							jQuery.each(data.kwic, function(i, kwic) {
+								var sentence = "";
+								jQuery.each(kwic.tokens, function(key, val) {
+									if (jQuery.inArray(val.word, quiz.punct) > -1){ 
+										sentence = sentence.trim() + val.word;
+									}
+									else{
+										sentence += ' ' + val.word;
+									}
+								});
+								var sentences = JSON.parse(window.localStorage['quiz-sentences']);
+								sentences.push({f : kwic.corpus, s : sentence.trim()});						
+								
+								window.localStorage['quiz-sentences'] = JSON.stringify(sentences);
+							});
+						}
 					});
-					
-					
-					
-					
 				})
 			}
 		);
