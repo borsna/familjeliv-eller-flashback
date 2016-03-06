@@ -16,9 +16,7 @@ function setState(state){
 	}
 }
 
-function guess(answer){
-	console.log('Guess: '+answer);
-	
+function guess(answer){	
 	if(quiz.current.f.toLowerCase().startsWith(answer)){
 		correct++;
 		$("#correct").fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
