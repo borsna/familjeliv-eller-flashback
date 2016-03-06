@@ -43,3 +43,13 @@
 footer .mdl-button{
 	width:43%;
 }
+
+@media (min-width: 700px) { 
+	.game-state-game .mdl-button{
+		height:90px;
+		width:47%;
+		font-size: 2em;
+		padding-top: 1em;
+	}
+
+}
