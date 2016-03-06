@@ -62,7 +62,7 @@ var quiz = {
 		sentences.splice(random, 1);
 		window.localStorage['quiz-sentences'] = JSON.stringify(sentences);
 
-		if(sentences.length < preloaded.length){
+		if(sentences.length < (preloaded.length - 5)){
 			this.loadNewSentences();
 		}         
 		return quiz.current;
