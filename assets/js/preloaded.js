@@ -27,4 +27,18 @@
 	{f: "FAMILJELIV-EXPERT", s: "Sen har jag även svårt att få i mig luft enligt min sambo låter jag mega andfådd även om jag har bara legat i soffan och tagit lugnt.. "},
 	{f: "FAMILJELIV-EXPERT", s: "Sedan vid 8 tiden tog jag ett till och de visade antydan/svagtstreck igen?!"},
 	{f: "FAMILJELIV-EXPERT", s: "Det står att man ska skriva i procent, är det då procent av den lön man har eller på föräldrapenningen?"},
+	{f:"FAMILJELIV-ALLMANNA-SAMHALLE", s: "I julas kom han hem från dagis och talade om att en del tror på tomten, andra på alver och några tror på gud."},
+	{f: "FAMILJELIV-ALLMANNA-SAMHALLE",s: "Synd att du inte kan skilja på sak och person utan bygger all din argumentation på halmgubbar."},
+	{f: "FLASHBACK-SPORT",s: "Mycket bra genomförd stafett av svenskorna."},
+	{f: "FAMILJELIV-ANGLARUM",s: "Nu är det över Det var visst bara när det handlade i regel om gängkrigen man fick vittna i ett annat rum ... :S Nu väntar jag bara på domen."},
+	{f: "FAMILJELIV-ALLMANNA-EKONOMI",s: "Vi blev nyfikna på hur ekonomin ser ut runt 45 år och vilka problem som kan finnas då."},
+	{f: "FAMILJELIV-ALLMANNA-HUSDJUR",s: "Han vägrar bajsa i den så han har ICAs kattsand, men jag tycker det luktar så jäkligt av den när han gjort sina behov .."},
+	{f: "FLASHBACK-FLASHBACK",s: "Katten är ju menlös."},
+	{f: "FLASHBACK-LIVSSTIL",s: "Varför ska du ut och roa dig när du kan donera ännu mer pengar till välgörenhet?"},
+	{f: "FLASHBACK-OVRIGT",s: "* klunk klunk klunk * låter juicen tills jag kommer på att jag redan slängt ett paket!!"},
+	{f: "FAMILJELIV-ALLMANNA-KROPP",s: "Jag har vänninor som kört lite olika behandlingar och en som kört cavi-lipo och är nöjd."},
+	{f: "FLASHBACK-LIVSSTIL",s: "Jag tror att nya fjortis modet har blivit reflexjacka / väst!"},
+	{f: "FAMILJELIV-ALLMANNA-FRITID",s: "får man även använda den gröna drinken som föryngrar??"},
+	{f: "FLASHBACK-MAT",s: "Sist blev det en halva fläskfile med kantareller på burk samt rödlök och creme freache, lite timjan och kalvfond(stavning?)"},
+	{f: "FAMILJELIV-ALLMANNA-HUSHEM",s: "Dragonfisk med ris igår och idag blev det spökkyckling med nudlar."}
 ];
