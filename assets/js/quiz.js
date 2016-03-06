@@ -94,27 +94,30 @@ var quiz = {
 							'command':'query',
 							'corpus': index,
 							'start': start,
-							'end': start,
+							'end': (start+3),
 							'cqp': '[]',
 							'defaultcontext':'1 sentence',
 							'show_struct':['text_username', 'text_date', 'thread_title']							
 						}
 					}).done(function(data){
 						console.log(data);
-						
-						var sentence = "";
-						jQuery.each(data.kwic[0].tokens, function(key, val) {
-							if (jQuery.inArray(val.word, quiz.punct) > -1){ 
-								sentence = sentence.trim() + val.word;
-							}
-							else{
-								sentence += ' ' + val.word;
-							}
-						});
-						var sentences = JSON.parse(window.localStorage['quiz-sentences']);
-						sentences.push({s:sentence.trim(),f:data.kwic[0].corpus});						
-						
-						window.localStorage['quiz-sentences'] = JSON.stringify(sentences);
+						if(!data.hasOwnProperty('ERROR')){
+							jQuery.each(data.kwic, function(i, kwic) {
+								var sentence = "";
+								jQuery.each(kwic.tokens, function(key, val) {
+									
+									if (jQuery.inArray(val.word, quiz.punct) > -1){ 
+										sentence = sentence.trim() + val.word;
+									}
+									else{
+										sentence += ' ' + val.word;
+									}
+								});
+								var sentences = JSON.parse(window.localStorage['quiz-sentences']);
+								sentences.push({s:sentence.trim(),f:kwic.corpus});
+								window.localStorage['quiz-sentences'] = JSON.stringify(sentences);
+							});
+						}
 					});
 					
 					
