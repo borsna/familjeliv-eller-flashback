@@ -1,7 +1,4 @@
-var quiz = {
-    //Default settings
-	// http://spraakbanken.gu.se/ws/korp?command=info&corpus=
-	
+var quiz = {	
     backend : "http://spraakbanken.gu.se/ws/korp?",
 	familjeliv : [
 		"FAMILJELIV-ADOPTION",
@@ -50,19 +47,19 @@ var quiz = {
 		if(window.localStorage['quiz-sentences'] == undefined){
 			window.localStorage['quiz-sentences'] = JSON.stringify(preloaded);
 		}
-	
-         var sentences = JSON.parse(window.localStorage['quiz-sentences']);
-         
-         var random = Math.floor(Math.random()*sentences.length);
 
-         quiz.current = sentences[random];
-         sentences.splice(random,1);
-         window.localStorage['quiz-sentences'] = JSON.stringify(sentences);
+		var sentences = JSON.parse(window.localStorage['quiz-sentences']);
 
-         if(sentences.length < preloaded.length){
-             this.loadNewSentences();
-         }         
-         return quiz.current;
+		var random = Math.floor(Math.random()*sentences.length);
+
+		quiz.current = sentences[random];
+		sentences.splice(random, 1);
+		window.localStorage['quiz-sentences'] = JSON.stringify(sentences);
+
+		if(sentences.length < preloaded.length){
+			this.loadNewSentences();
+		}         
+		return quiz.current;
     },
     loadNewSentences : function(callback){
          jQuery.ajaxSettings.traditional = true;
