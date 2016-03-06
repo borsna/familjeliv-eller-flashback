@@ -41,6 +41,8 @@ function guess(answer){
 	
 	quiz.getNewSentence();
 	$('#sentence').text(quiz.current.s);	
+	
+	$('#load').text('{f: "'+quiz.current.f+'", s: "'+quiz.current.s+'"},');
 }
 
 function startGame(){

@@ -69,65 +69,57 @@ var quiz = {
     },
     loadNewSentences : function(callback){
          jQuery.ajaxSettings.traditional = true;
+		 
+		 var corpora = this.getRandomCorpora();
+		 
 
-         jQuery.ajax({
-				url:this.backend, 
+		$.each(corpora, function(index, corpus){
+			
+			console.log('load from: '+corpus);
+			jQuery.ajax({
+				url:quiz.backend, 
 				dataType:'jsonp', data: {
-					'command':'info',
-					'corpus': this.getRandomCorpora().join(',')
+					'command':'query_sample',
+					'corpus': corpus,
+					'start': 0,
+					'end': 5,
+					'cqp': '[]',
+					'defaultcontext':'1 sentence',
+					'show_struct':['text_username', 'text_date', 'thread_title']							
 				}
 			}).done(function(data){
 				console.log(data);
-				$.each(data.corpora, function(index, corpus){
-					
-					var start = Math.floor(Math.random()*corpus.info.Sentences);
-					
-					jQuery.ajax({
-						url:quiz.backend, 
-						dataType:'jsonp', data: {
-							'command':'query_sample',
-							'corpus': index,
-							'start': 0,
-							'end': 7,
-							'cqp': '[]',
-							'defaultcontext':'1 sentence',
-							'show_struct':['text_username', 'text_date', 'thread_title']							
-						}
-					}).done(function(data){
-						console.log(data);
-						if(data.hasOwnProperty('ERROR') == false){
-							jQuery.each(data.kwic, function(i, kwic) {
-								var sentence = "";
-								jQuery.each(kwic.tokens, function(key, val) {
-									if (jQuery.inArray(val.word, quiz.punct) > -1){ 
-										sentence = sentence.trim() + val.word;
-									}
-									else{
-										sentence += ' ' + val.word;
-									}
-								});
-								var sentences = JSON.parse(window.localStorage['quiz-sentences']);
-								sentences.push({f : kwic.corpus, s : sentence.trim()});						
-								
-								window.localStorage['quiz-sentences'] = JSON.stringify(sentences);
-							});
-						}
+				if(data.hasOwnProperty('ERROR') == false){
+					jQuery.each(data.kwic, function(i, kwic) {
+						var sentence = "";
+						jQuery.each(kwic.tokens, function(key, val) {
+							if (jQuery.inArray(val.word, quiz.punct) > -1){ 
+								sentence = sentence.trim() + val.word;
+							}
+							else{
+								sentence += ' ' + val.word;
+							}
+						});
+						var sentences = JSON.parse(window.localStorage['quiz-sentences']);
+						sentences.push({f : kwic.corpus, s : sentence.trim()});						
+						
+						window.localStorage['quiz-sentences'] = JSON.stringify(sentences);
 					});
-				})
-			}
-		);
+				}
+			});
+		});
     },
 	getRandomCorpora: function(){
 		var corpuslist = new Array();
 		
-		while(corpuslist.length < 5){
+		while(corpuslist.length < 2){
 			var corpus = this.familjeliv[Math.floor(Math.random()*this.familjeliv.length)];
 			if($.inArray(corpus, corpuslist) < 0){
 				corpuslist.push(corpus);
 			}
 		}
 		
-		while(corpuslist.length < 10){
+		while(corpuslist.length < 4){
 			var corpus = this.flashback[Math.floor(Math.random()*this.flashback.length)];
 			if($.inArray(corpus, corpuslist) < 0){
 				corpuslist.push(corpus);
