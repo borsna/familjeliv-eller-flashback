@@ -87,8 +87,8 @@ var quiz = {
 						dataType:'jsonp', data: {
 							'command':'query_sample',
 							'corpus': index,
-							'start': start,
-							'end': (start+5),
+							'start': 0,
+							'end': 7,
 							'cqp': '[]',
 							'defaultcontext':'1 sentence',
 							'show_struct':['text_username', 'text_date', 'thread_title']							
