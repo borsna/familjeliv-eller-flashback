@@ -1,0 +1,101 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Familjeliv eller Falshback</title>
+	
+	<script src="assets/js/material.min.js"></script>
+	<script src="assets/js/jquery.min.js"></script>
+	
+	<link rel="stylesheet" href="assets/css/material.min.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="assets/css/app.css" />
+	
+	<script src="assets/js/app.js"></script>
+	<script src="assets/js/preloaded.js"></script>
+	<script src="assets/js/quiz.js"></script>
+  </head>
+  <body>
+  
+	<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+	  <header class="mdl-layout__header">
+		<div class="mdl-layout__header-row">
+		  <!-- Title -->
+		  <span class="mdl-layout-title">Familjeliv eller Flashback</span>
+		</div>
+	  </header>
+	  <div class="mdl-layout__drawer">
+		<span class="mdl-layout-title">Meny</span>
+		<nav class="mdl-navigation">
+		  <a class="mdl-navigation__link" href="#" onclick="setState('start')"><i class="material-icons">autorenew</i>Starta om</a>
+		  <a class="mdl-navigation__link" href="#" onclick="setState('about')"><i class="material-icons">info</i>Om spelet</a>
+		  <a class="mdl-navigation__link" href="#"><i class="material-icons">exit_to_app</i>Avsluta</a>
+		</nav>
+	  </div>
+	  <main class="mdl-layout__content">
+		<div class="page-content">
+		
+
+			<!-- Start Square card -->
+			<div class="game-state game-state-start start-card-square mdl-card mdl-shadow--2dp">
+			  <div class="mdl-card__title mdl-card--expand">
+				<h2 class="mdl-card__title-text">Gissa Forum</h2>
+			  </div>
+			  <div class="mdl-card__supporting-text">
+				Gissa om en slumpad mening kommer från forumet Familjeliv eller Flashback.
+			  </div>
+			  <div class="mdl-card__actions mdl-card--border">
+				<a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" onclick="setState('game')">
+				  Starta
+				</a>
+			  </div>
+			</div>
+			
+			<!-- Game Square card -->
+			<div class="game-state game-state-game mdl-card mdl-shadow--2dp" style="display:none;">
+			  <div class="mdl-card__title mdl-card--expand">
+				<h2 class="mdl-card__title-text">Från vilket forum?</h2>
+			  </div>
+			  <div id="sentence" class="mdl-card__supporting-text">
+				En slumpad mening som är ganska lång, säkert flera ord på raken med massa andra saker och rader med mera och sånt.
+			  </div>
+			  
+			  <div id="progress" class="mdl-progress mdl-js-progress"></div>
+			  <p>
+				<span style="float:left;">Rätt: <span id="correct">0</span></span>
+				<span style="float:right;">Fel: <span id="wrong">10</span></span>
+			  </p>
+			</div>		
+
+
+			<!-- About Square card -->
+			<div class="game-state game-state-about mdl-card mdl-shadow--2dp" style="display:none;">
+			  <div class="mdl-card__title mdl-card--expand">
+				<h2 class="mdl-card__title-text">Om spelet</h2>
+			  </div>
+			  <div class="mdl-card__supporting-text">
+				Familjeliv eller Flashback hämtar slumpade meningar från Korp som utvecklas av språkbanken.<br />
+				
+				<a href="http://spraakbanken.gu.se"><img src="assets/img/sb-logo.png" /></a>
+			  </div>
+			</div>				
+		
+	
+		
+		
+		</div>
+	  </main>
+	  <footer class="game-state game-state-game" style="display:none;">
+		<div class="mdl-grid">
+		<a class="mdl-cell mdl-cell--6-col mdl-button mdl-js-button mdl-button--raised mdl-button--colored ripple-effect" onclick="guess('familjeliv')">Familjeliv</a>
+		<a class="mdl-cell mdl-cell--6-col mdl-button mdl-js-button mdl-button--raised mdl-button--accent ripple-effect" onclick="guess('flashback')">Flashback</a>
+		</div>
+	   </footer>		  
+	</div>  
+
+  
+
+  </body>
+</html>

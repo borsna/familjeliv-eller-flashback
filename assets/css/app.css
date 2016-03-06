@@ -1,0 +1,17 @@
+.game-state{
+  width:100%;
+}
+
+.mdl-card__title {
+  width:100%;
+  height: 117px;
+}
+.game-state  .mdl-card__title {
+  color: #fff;
+  background: url('../img/question_answer_white.png') bottom right 15% no-repeat #46B6AC;
+  background-position-y: 5%;
+}
+
+footer .mdl-button{
+	width:43%;
+}
