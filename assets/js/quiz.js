@@ -50,6 +50,12 @@ var quiz = {
 
 		var sentences = JSON.parse(window.localStorage['quiz-sentences']);
 
+		if(sentences.length == 0){
+			sentences = preloaded;
+			window.localStorage['quiz-sentences'] = JSON.stringify(preloaded);
+			this.loadNewSentences();
+		}
+		
 		var random = Math.floor(Math.random()*sentences.length);
 
 		quiz.current = sentences[random];
@@ -82,7 +88,7 @@ var quiz = {
 							'command':'query_sample',
 							'corpus': index,
 							'start': start,
-							'end': (start+3),
+							'end': (start+5),
 							'cqp': '[]',
 							'defaultcontext':'1 sentence',
 							'show_struct':['text_username', 'text_date', 'thread_title']							
