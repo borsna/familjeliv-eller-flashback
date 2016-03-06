@@ -43,7 +43,10 @@ function startGame(){
 function updateProgess(){
 	$('#correct').html(correct);
 	$('#wrong').html(wrong);
-	var percent = correct/(correct+wrong)*100;
+	var percent = 100;
+	if((correct+wrong) > 0){
+	  percent = correct/(correct+wrong)*100;
+	}
 	document.querySelector('#progress').MaterialProgress.setProgress(percent);
 }
 

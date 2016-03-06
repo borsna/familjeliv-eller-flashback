@@ -2,6 +2,34 @@
   width:100%;
 }
 
+#progress{
+  width:100%;
+}
+
+#progress .bar1{
+  background-color: rgb(76, 175, 80);
+}
+
+#progress .bar2{
+  background-color: rgb(244, 67, 54);
+  background-image:none;
+}
+
+#correct, #wrong{
+	border-radius:2px;
+	padding:2px;
+	margin:3px;
+	color:#FFF;
+}
+
+#correct{
+  background-color: rgb(76, 175, 80);
+}
+
+#wrong{
+  background-color: rgb(244, 67, 54);
+}
+
 .mdl-card__title {
   width:100%;
   height: 117px;
