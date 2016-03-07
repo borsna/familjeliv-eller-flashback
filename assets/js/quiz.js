@@ -68,11 +68,10 @@ var quiz = {
 		return quiz.current;
     },
     loadNewSentences : function(callback){
-         jQuery.ajaxSettings.traditional = true;
+        jQuery.ajaxSettings.traditional = true;
 		 
-		 var corpora = this.getRandomCorpora();
-		 
-
+		var corpora = this.getRandomCorpora();
+		
 		$.each(corpora, function(index, corpus){
 			
 			console.log('load from: '+corpus);
