@@ -33,10 +33,13 @@ function guess(answer){
 	if(quiz.current.f.toLowerCase().startsWith(answer)){
 		correct++;
 		$("#correct").fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
+		_trackEvent('familjeliv-eller-flashback', 'guess', 'answer', 'correct');
 	}else{
 		wrong++;
 		$("#wrong").fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
+		_trackEvent('familjeliv-eller-flashback', 'guess', 'answer', 'wrong');
 	}
+
 	updateProgess();
 	
 	quiz.getNewSentence();
