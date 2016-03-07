@@ -1,5 +1,5 @@
 # familjeliv-eller-flashback
-Gissa om en slumpad mening kommer från formulet familjeliv eller flashback
+Gissa om en slumpad mening kommer från forumet familjeliv eller flashback.
 
 
 # Källa för meningar
