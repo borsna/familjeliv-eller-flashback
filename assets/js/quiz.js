@@ -62,7 +62,7 @@ var quiz = {
 		sentences.splice(random, 1);
 		window.localStorage['quiz-sentences'] = JSON.stringify(sentences);
 
-		if(sentences.length < (preloaded.length - 5)){
+		if(sentences.length < (preloaded.length - 15)){
 			this.loadNewSentences();
 		}         
 		return quiz.current;
@@ -112,20 +112,12 @@ var quiz = {
 	getRandomCorpora: function(){
 		var corpuslist = new Array();
 		
-		while(corpuslist.length < 2){
-			var corpus = this.familjeliv[Math.floor(Math.random()*this.familjeliv.length)];
-			if($.inArray(corpus, corpuslist) < 0){
-				corpuslist.push(corpus);
-			}
-		}
-		
-		while(corpuslist.length < 4){
-			var corpus = this.flashback[Math.floor(Math.random()*this.flashback.length)];
-			if($.inArray(corpus, corpuslist) < 0){
-				corpuslist.push(corpus);
-			}
-		}		
-		
+		var corpus_familjeliv = this.familjeliv[Math.floor(Math.random()*this.familjeliv.length)];
+		corpuslist.push(corpus_familjeliv);
+
+		var corpus_flashback = this.flashback[Math.floor(Math.random()*this.flashback.length)];
+		corpuslist.push(corpus_flashback);
+	
 		return corpuslist;
 	}
 }
