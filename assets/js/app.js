@@ -33,11 +33,11 @@ function guess(answer){
 	if(quiz.current.f.toLowerCase().startsWith(answer)){
 		correct++;
 		$("#correct").fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
-		ga('send', 'event', 'familjeliv-eller-flashback', 'guess', 'correct');
+		ga('send', 'event', 'familjeliv-eller-flashback', 'guess', 'correct', 10);
 	}else{
 		wrong++;
 		$("#wrong").fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
-		ga('send', 'event', 'familjeliv-eller-flashback', 'guess', 'wrong');
+		ga('send', 'event', 'familjeliv-eller-flashback', 'guess', 'wrong', 20);
 	}
 
 	updateProgess();
