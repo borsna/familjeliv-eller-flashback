@@ -1,10 +1,10 @@
 # familjeliv-eller-flashback
 Gissa om en slumpad mening kommer från forumet familjeliv eller flashback.
 
-#Spela
+## Spela
 <https://borsna.github.io/familjeliv-eller-flashback>
 
-# Källa för meningar
+## Källa för meningar
 För att hämta slumpade meningar används språkbankens API för Korp
 
 [![Språkbanken](https://borsna.github.io/familjeliv-eller-flashback/assets/img/sb-logo.png "Språkbanken")](http://spraakbanken.gu.se)
@@ -12,6 +12,7 @@ För att hämta slumpade meningar används språkbankens API för Korp
 #Skapat av
 [Olof Olsson](https://twitter.com/borsna) och [Robin Kahlbom](https://twitter.com/Kringelbagaren)
 
-# Licence
+## Licence
 
-The MIT License (MIT)
+The MIT License (MIT) hejsan
+
