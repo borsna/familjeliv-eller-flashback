@@ -1,5 +1,5 @@
 var quiz = {	
-    backend : "http://spraakbanken.gu.se/ws/korp?",
+    backend : "https://ws.spraakbanken.gu.se/ws/korp/v8/",
 	familjeliv : [
 		"FAMILJELIV-ADOPTION",
 		"FAMILJELIV-ALLMANNA-EKONOMI",
@@ -67,47 +67,48 @@ var quiz = {
 		}         
 		return quiz.current;
     },
-    loadNewSentences : function(callback){
-        jQuery.ajaxSettings.traditional = true;
-		 
-		var corpora = this.getRandomCorpora();
-		
-		$.each(corpora, function(index, corpus){
-			
-			console.log('load from: '+corpus);
-			jQuery.ajax({
-				url:quiz.backend, 
-				dataType:'jsonp', data: {
-					'command':'query_sample',
-					'corpus': corpus,
-					'start': 0,
-					'end': 5,
-					'cqp': '[]',
-					'defaultcontext':'1 sentence',
-					'show_struct':['text_username', 'text_date', 'thread_title']							
-				}
-			}).done(function(data){
-				console.log(data);
-				if(data.hasOwnProperty('ERROR') == false){
-					jQuery.each(data.kwic, function(i, kwic) {
-						var sentence = "";
-						jQuery.each(kwic.tokens, function(key, val) {
-							if (jQuery.inArray(val.word, quiz.punct) > -1){ 
-								sentence = sentence.trim() + val.word;
-							}
-							else{
-								sentence += ' ' + val.word;
-							}
-						});
-						var sentences = JSON.parse(window.localStorage['quiz-sentences']);
-						sentences.push({f : kwic.corpus, s : sentence.trim()});						
-						
-						window.localStorage['quiz-sentences'] = JSON.stringify(sentences);
+    loadNewSentences : function(){
+		this.getRandomCorpora().forEach(function(corpus){
+			quiz.fetchSentences(corpus, Math.floor(Math.random() * 100000))
+				.then(function(kwic){
+					// the random offset can exceed a small corpus; retry from the start
+					return kwic.length ? kwic : quiz.fetchSentences(corpus, 0);
+				})
+				.then(function(kwic){
+					var sentences = JSON.parse(window.localStorage['quiz-sentences']);
+					kwic.forEach(function(k){
+						var sentence = k.tokens.reduce(function(text, token){
+							return quiz.punct.indexOf(token.word) > -1 ? text.trim() + token.word : text + ' ' + token.word;
+						}, '');
+						sentences.push({f : k.corpus, s : sentence.trim()});
 					});
-				}
-			});
+					window.localStorage['quiz-sentences'] = JSON.stringify(sentences);
+				})
+				.catch(function(error){
+					console.error('Could not load sentences from ' + corpus, error);
+				});
 		});
     },
+	fetchSentences : function(corpus, start){
+		// every sentence start is a match, which gives distinct sentences
+		var params = new URLSearchParams({
+			corpus: corpus,
+			start: start,
+			end: start + 4,
+			cqp: '<sentence> []',
+			default_context: '1 sentence',
+			show: 'word'
+		});
+		return fetch(quiz.backend + 'query?' + params)
+			.then(function(response){
+				if(!response.ok) throw new Error('HTTP ' + response.status);
+				return response.json();
+			})
+			.then(function(data){
+				if(data.ERROR) throw new Error(data.ERROR.value || 'Korp error');
+				return data.kwic || [];
+			});
+	},
 	getRandomCorpora: function(){
 		var corpuslist = new Array();
 		
